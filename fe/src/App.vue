@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <component :is="layout">
     <router-view />
   </component>
@@ -20,3 +21,7 @@ export default {
   }
 };
 </script>
+=======
+  <RouterView />
+</template>
+>>>>>>> Stashed changes
