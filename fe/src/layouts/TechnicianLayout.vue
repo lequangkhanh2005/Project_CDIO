@@ -5,7 +5,7 @@
         <div class="brand-icon">CM</div>
         <div>
           <p class="brand-name">CondoMaint</p>
-          <p class="brand-tag">Technician Center</p>
+          <p class="brand-tag">Kỹ thuật viên</p>
         </div>
       </div>
 
@@ -13,7 +13,7 @@
         <div class="avatar">KT</div>
         <div>
           <p class="profile-name">{{ displayName }}</p>
-          <p class="profile-role">Truy cập hệ thống</p>
+          <p class="profile-role">Đang trực</p>
         </div>
       </div>
 
@@ -22,29 +22,9 @@
           <span class="menu-icon">DB</span>
           Dashboard
         </RouterLink>
-        <RouterLink class="menu-item" to="/technician/jobs" active-class="active">
+        <RouterLink class="menu-item" to="/technician/menu" active-class="active">
           <span class="menu-icon">JB</span>
-          Quản lý job
-        </RouterLink>
-        <RouterLink class="menu-item" to="/technician/residents" active-class="active">
-          <span class="menu-icon">RS</span>
-          Cư dân
-        </RouterLink>
-        <RouterLink class="menu-item" to="/technician/worklogs" active-class="active">
-          <span class="menu-icon">WL</span>
-          Worklog
-        </RouterLink>
-        <RouterLink class="menu-item" to="/technician/invoices" active-class="active">
-          <span class="menu-icon">IV</span>
-          Hóa đơn
-        </RouterLink>
-        <RouterLink class="menu-item" to="/technician/reports" active-class="active">
-          <span class="menu-icon">RP</span>
-          Báo cáo
-        </RouterLink>
-        <RouterLink class="menu-item" to="/technician/history" active-class="active">
-          <span class="menu-icon">HS</span>
-          Lịch sử
+          Job được giao
         </RouterLink>
       </nav>
 
@@ -63,13 +43,13 @@
         <div class="top-right">
           <div class="status-pill">
             <span>Vai trò</span>
-            <strong>Technician</strong>
+            <strong>Kỹ thuật viên</strong>
           </div>
           <div class="user-chip">
             <span class="avatar small">KT</span>
             <div>
               <p class="user-name">{{ displayName }}</p>
-              <p class="user-sub">Sẵn sàng xử lý</p>
+              <p class="user-sub">Sẵn sàng nhận việc</p>
             </div>
           </div>
         </div>

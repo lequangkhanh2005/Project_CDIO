@@ -29,6 +29,22 @@
           </div>
           <p class="hint" v-if="item.note">{{ item.note }}</p>
         </div>
+        <p v-if="!histories.length" class="hint">Chưa có lịch sử.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 16px;">
+      <h2>Đánh giá khách hàng</h2>
+      <div class="feedback-list">
+        <div v-for="item in feedbacks" :key="item.id" class="feedback-item">
+          <div>
+            <p class="feedback-name">{{ item.resident_name || 'Khách hàng' }}</p>
+            <p class="feedback-meta">{{ formatDate(item.created_at) }}</p>
+          </div>
+          <div class="feedback-rating">{{ formatRating(item.rating) }}</div>
+          <p class="feedback-comment">{{ item.comment || 'Không có bình luận' }}</p>
+        </div>
+        <p v-if="!feedbacks.length" class="hint">Chưa có đánh giá nào.</p>
       </div>
     </div>
   </AdminLayout>
@@ -41,11 +57,17 @@ import { apiFetch } from '../../composables/useApi'
 
 const histories = ref([])
 const jobs = ref([])
+const feedbacks = ref([])
 const filters = ref({ job_id: '' })
 
 const formatDate = (value) => {
   if (!value) return '-'
   return new Date(value).toLocaleString('vi-VN')
+}
+
+const formatRating = (value) => {
+  if (!value) return 'Chưa đánh giá'
+  return `${value}/5`
 }
 
 const loadJobs = async () => {
@@ -60,8 +82,53 @@ const loadHistories = async () => {
   histories.value = result.data
 }
 
+const loadFeedbacks = async () => {
+  const result = await apiFetch('/api/feedbacks')
+  feedbacks.value = result.data || []
+}
+
 onMounted(async () => {
   await loadJobs()
   await loadHistories()
+  await loadFeedbacks()
 })
 </script>
+
+<style scoped>
+.feedback-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.feedback-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: grid;
+  gap: 6px;
+  background: #fff;
+}
+
+.feedback-name {
+  margin: 0;
+  font-weight: 600;
+}
+
+.feedback-meta {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.feedback-rating {
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.feedback-comment {
+  margin: 0;
+  color: #334155;
+  font-size: 14px;
+}
+</style>

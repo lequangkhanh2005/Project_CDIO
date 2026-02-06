@@ -1,9 +1,11 @@
-import { createApp } from 'vue'
+﻿import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
-window.router = router;
+import './style.css'
+
+window.router = router
 
 const app = createApp(App)
 

@@ -20,6 +20,8 @@ class MaintenanceJob extends Model
         'status',
         'technician_id',
         'completed_at',
+        'report_image',
+        'completion_image',
     ];
 
     protected $casts = [

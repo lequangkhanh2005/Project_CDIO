@@ -40,7 +40,13 @@ class JobController extends Controller
             'resident_phone' => ['required', 'string'],
             'status' => ['nullable', 'string'],
             'technician_id' => ['nullable', 'integer', 'exists:users,id'],
+            'report_image' => ['nullable', 'string'],
         ]);
+
+        $user = $request->user();
+        if (empty($data['technician_id']) && $user && $user->role === 'technician') {
+            $data['technician_id'] = $user->id;
+        }
 
         $job = MaintenanceJob::create([
             ...$data,
@@ -180,10 +186,17 @@ class JobController extends Controller
         ], 201);
     }
 
-    public function complete(MaintenanceJob $job)
+    public function complete(Request $request, MaintenanceJob $job)
     {
+        $data = $request->validate([
+            'completion_image' => ['nullable', 'string'],
+        ]);
+
         $job->status = 'Hoan thanh';
         $job->completed_at = now();
+        if (!empty($data['completion_image'])) {
+            $job->completion_image = $data['completion_image'];
+        }
         $job->save();
 
         JobHistory::create([

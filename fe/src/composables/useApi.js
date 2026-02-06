@@ -3,7 +3,7 @@ import { useAuth } from './useAuth'
 const apiBase = import.meta.env.VITE_API_BASE || ''
 
 export const apiFetch = async (path, options = {}) => {
-  const { token } = useAuth()
+  const { token, clearSession } = useAuth()
   const headers = {
     'Content-Type': 'application/json',
     ...(options.headers || {}),
@@ -22,6 +22,12 @@ export const apiFetch = async (path, options = {}) => {
   const payload = contentType.includes('application/json') ? await response.json() : null
 
   if (!response.ok) {
+    if (response.status === 401) {
+      clearSession()
+      if (window.location.pathname !== '/technician/login') {
+        window.location.href = '/technician/login'
+      }
+    }
     const message = payload?.message || 'Có lỗi xảy ra.'
     throw new Error(message)
   }

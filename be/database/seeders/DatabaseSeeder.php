@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'phone' => '0909000000',
             'email' => 'admin@condomaint.local',
-            'password' => Hash::make('admin123'),
+            'password' => Hash::make('admin'),
             'role' => 'admin',
         ]);
 
@@ -68,31 +68,31 @@ class DatabaseSeeder extends Seeder
         $jobs = [
             [
                 'code' => 'JOB-0001',
-                'title' => 'Kiem tra may bom tang ham',
-                'description' => 'May bom phat tieng on lon, can kiem tra bac dan.',
-                'location' => 'Tang ham B1 - Khu A',
+                'title' => 'Kiểm tra máy bơm tầng hầm',
+                'description' => 'Máy bơm phát tiếng ồn lớn, cần kiểm tra bạc đạn.',
+                'location' => 'Tầng hầm B1 - Khu A',
                 'appointment_at' => now()->addHours(2),
-                'resident_name' => 'Tran Thi Mai',
+                'resident_name' => 'Trần Thị Mai',
                 'resident_phone' => '0903000222',
                 'status' => 'Moi',
             ],
             [
                 'code' => 'JOB-0002',
-                'title' => 'Thay bong den hanh lang',
-                'description' => 'Bong den hanh lang tang 5 bi hong.',
-                'location' => 'Chung cu X - Tang 5',
+                'title' => 'Thay bóng đèn hành lang',
+                'description' => 'Bóng đèn hành lang tầng 5 bị hỏng.',
+                'location' => 'Chung cư X - Tầng 5',
                 'appointment_at' => now()->addDay(),
-                'resident_name' => 'Le Van Binh',
+                'resident_name' => 'Lê Văn Bình',
                 'resident_phone' => '0912000333',
                 'status' => 'Dang xu ly',
             ],
             [
                 'code' => 'JOB-0003',
-                'title' => 'Sua khoa cua ra vao',
-                'description' => 'Khoa cua bi ket, khong dong mo tron.',
-                'location' => 'Toa B - Can 12.03',
+                'title' => 'Sửa khóa cửa ra vào',
+                'description' => 'Khóa cửa bị kẹt, không đóng mở trơn.',
+                'location' => 'Tòa B - Căn 12.03',
                 'appointment_at' => now()->addDays(2),
-                'resident_name' => 'Ngo Thi Thu',
+                'resident_name' => 'Ngô Thị Thu',
                 'resident_phone' => '0935000444',
                 'status' => 'Doi vat tu',
             ],
@@ -109,13 +109,13 @@ class DatabaseSeeder extends Seeder
                 'technician_id' => $technician->id,
                 'hours' => 1.5,
                 'cost' => 120000,
-                'note' => 'Kiem tra so bo va ghi nhan tinh trang.',
+                'note' => 'Kiểm tra sơ bộ và ghi nhận tình trạng.',
                 'logged_at' => now()->subHours(3),
             ]);
 
             JobHistory::create([
                 'maintenance_job_id' => $job->id,
-                'action' => 'Tao job',
+                'action' => 'Tạo job',
                 'note' => $job->title,
                 'created_by' => $admin->id,
             ]);
@@ -126,9 +126,9 @@ class DatabaseSeeder extends Seeder
             'resident_id' => 1,
             'job_id' => 1,
             'amount' => 350000,
-            'status' => 'Cho thanh toan',
+            'status' => 'Chờ thanh toán',
             'issued_at' => now()->subDay(),
-            'note' => 'Chi phi sua chua ban dau.',
+            'note' => 'Chi phí sửa chữa ban đầu.',
         ]);
     }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('resident_name');
             $table->string('resident_phone');
             $table->string('status')->default('Moi');
-            $table->foreignId('technician_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('technician_id')->nullable()->constrained('users')->nullOnDelete();
             $table->dateTime('completed_at')->nullable();
             $table->timestamps();
         });

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\HistoryController;
+use App\Http\Controllers\Api\FeedbackController;
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
@@ -44,6 +45,7 @@ Route::middleware('auth.api')->group(function () {
 
     Route::get('/reports/summary', [ReportController::class, 'summary']);
     Route::get('/histories', [HistoryController::class, 'index']);
+    Route::get('/feedbacks', [FeedbackController::class, 'index']);
 
     Route::get('/users', [UserController::class, 'index']);
 });
